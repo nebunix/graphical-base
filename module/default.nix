@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, systemInformation, ... }:
 
 {
   hardware.bluetooth = {
@@ -16,4 +16,10 @@
     pulse.enable = true;
     jack.enable = true;
   };
+
+  home-manager.users."${systemInformation.userName}" =
+    { ... }:
+    {
+      home.packages = with pkgs; [ brightnessctl ];
+    };
 }
